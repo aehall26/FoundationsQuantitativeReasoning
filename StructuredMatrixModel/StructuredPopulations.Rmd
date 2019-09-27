@@ -1,0 +1,73 @@
+---
+title: "StructuredPoplations"
+author: "Alison Hall"
+date: "9/20/2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is how you can access the data on Westslope cutthroat trout including how to access the paper 
+```{r}
+load("COMADRE_v.3.0.0.RData")
+ comadre$metadata[134,]
+```
+
+HW Assignment 3
+
+1. I chose to study westslope cutthroat trout. I wanted to study trout species because I have experience studying trout life stages and was excited to give some of the observations I have made in the field some mathmatical context.
+
+2. In systems that have toxic water conditions, which age class of trout is important to protect.
+
+3. The matrix below refers to 4 age classes of trout: YOY, Juvenile, Adult1, Adult 2+. The matrix examplains that 0 YOY and close to 0 Juveniles stay in that age class after a year. That is due to the definition of YOY which is an age class that is defined by being only one year, so we would not expect a value > 0 in the YOY row on the matrix. Adult1 and Adult 2+ remain in their age classes for longer. 
+```{r}
+
+# get the matrix from the data from the cutthroat trout data 
+matrix <- comadre$mat[134][[1]]$matA
+#this gives us our eigen values and vectors 
+eigen(comadre$mat[134][[1]]$matA)
+#get the first eigen vector
+eigen(comadre$mat[134][[1]]$matA)
+eigen1 <- (eigen(comadre$mat[134][[1]]$matA))
+#sum the vector 1
+sum(eigen1$vector[,1])
+
+
+```
+
+3. I used the eigenvector associated with the dominant eigen value (1.09) to calculate the stable age distribution. To do this, take the sum of the eigen vector and then create a proportion associated with each age class. 
+```{r}
+ eigen1$vector[,1]/sum(eigen1$vector[,1])
+```
+
+This means that ~94% of the population is held in stage one- "YOY" young of year trout, and then the age distrubution decreases as the age classes get older. 
+
+3a: Calculating Elacticity
+
+Use the popbio package in R to calculate elasticity which assess the effect of a proportional change in lambda.
+```{r}
+library(popbio)
+elasticity(matrix)
+
+```
+This elasticity matrix reveals the proportional change in populatuion growth rate and can be used to identify which age class is most sensitive to change. For this example, it appears that the Adult2+ lifestage is most sensitive, and this is likely because they are the breeding individuals in the population and are thus important to protect. 
+
+3b: Calculating Sensitivity- which refers to the rate of change of the eigen values in the context of the rest of the matrix. A large sensitivity value means that when that parameter changes, the growth rate changes a lot. 
+```{r}
+sensitivity(matrix)
+```
+This calculation reveals that changes to the number of YOY individuals exerts the largest change on the eigen value. This is not very informative as the value of 82.02 refers to a sitution in which YOY move directly on to being breeding age adults.
+
+4. These data suggest that it is important to conserve breeding adult trout in systems affected by toxicity to preserve 
+
+Notes about Git
+note: clone the folder 
+git add 
+git commit 'changes we comited'
+git status
+git remote add origin (get origin from the website)
+git push origin master
