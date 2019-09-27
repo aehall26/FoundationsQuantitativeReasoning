@@ -1,1 +1,1 @@
-##Foundations of Quantitative Reasoning
+## Foundations of Quantitative Reasoning
