@@ -41,10 +41,10 @@ sum(eigen1$vector[,1])
 
 3. I used the eigenvector associated with the dominant eigen value (1.09) to calculate the stable age distribution. To do this, take the sum of the eigen vector and then create a proportion associated with each age class. 
 ```{r}
- eigen1$vector[,1]/sum(eigen1$vector[,1])
+SAD <- eigen1$vector[,1]/sum(eigen1$vector[,1])
 ```
 
-This means that ~94% of the population is held in stage one- "YOY" young of year trout, and then the age distrubution decreases as the age classes get older. 
+This means that `r round(100*as.numeric(SAD[1]))`% of the population is held in stage one- "YOY" young of year trout, and then the age distrubution decreases as the age classes get older. 
 
 3a: Calculating Elacticity
 
@@ -64,6 +64,7 @@ This calculation reveals that changes to the number of YOY individuals exerts th
 
 4. These data suggest that it is important to conserve breeding adult trout in systems affected by toxicity to preserve 
 
+<!--
 Notes about Git
 note: clone the folder 
 git add 
@@ -71,3 +72,10 @@ git commit 'changes we comited'
 git status
 git remote add origin (get origin from the website)
 git push origin master
+-->
+
+## Comments from Easton
+
+- Good job on this assignment overall. You identify a clear question and the used the appropriate tools to address that question. 
+- For question 3, I inserted code to show how you can make your document more reproducible where percent in YOY stage is not "hard-coded" in the manuscript
+- Graphs may have been helpful in comparing the elasticities
